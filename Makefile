@@ -19,3 +19,6 @@ docker-clear:
 #Publish test sns msg
 publish-local-sns-test:
 	aws --endpoint-url=http://localhost:4566 sns publish --topic-arn arn:aws:sns:us-east-1:000000000000:sns_sender_topic --message  'for test'
+
+test:
+	go test -covermode=count -coverprofile=count.out ./...

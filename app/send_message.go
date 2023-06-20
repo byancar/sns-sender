@@ -14,11 +14,13 @@ func SendMessage(message string) error {
 	if err != nil {
 		return err
 	}
+	cfg.Region = "us-east-1"
 
 	client := sns.NewFromConfig(cfg)
 
 	params := &sns.PublishInput{
-		Message:  aws.String(message),
+		Message: aws.String(message),
+
 		TopicArn: aws.String(settings.Env.AWS.TopicName),
 	}
 
@@ -28,6 +30,5 @@ func SendMessage(message string) error {
 	}
 
 	fmt.Println("Message sent successfully. Message ID:", *resp.MessageId)
-	return nil
 	return nil
 }
